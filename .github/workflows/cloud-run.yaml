@@ -19,11 +19,11 @@ on:
 
 name: Build and Deploy to Cloud Run
 env:
-  PROJECT_ID: '${{ secrets.GCP_PROJECT }}'
+  PROJECT_ID: ${{ secrets.GCP_PROJECT }}
   SERVICE: api-docker-prueba
   REGION: southamerica-east1
-  BASIC_AUTH_USERNAME: '${{ secrets.BASIC_AUTH_USERNAME }}'
-  BASIC_AUTH_PASSWORD: '${{ secrets.BASIC_AUTH_PASSWORD }}'  
+  BASIC_AUTH_USERNAME: ${{ secrets.BASIC_AUTH_USERNAME }}
+  BASIC_AUTH_PASSWORD: ${{ secrets.BASIC_AUTH_PASSWORD }}  
   
 jobs:
   deploy:
@@ -47,8 +47,8 @@ jobs:
     #    service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
 
     # Alternative option - authentication via credentials json
-    - id: 'auth'
-      uses: 'google-github-actions/auth@v0'
+    - id: 'setup-gcloud'
+      uses: 'google-github-actions/setup-gcloud@master'
       with:
         credentials_json: '${{ secrets.GCP_SA_KEY }}'
 
